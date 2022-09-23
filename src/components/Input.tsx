@@ -30,18 +30,17 @@ export const IInput: FC<IInputProps & Props> = ({
 
       <Input
         variant="filled"
-        backgroundColor={'red.300'}
         type={placeholder}
         onChangeText={onChangeText}
         borderRadius="lg"
         shadow={2}
         _dark={{
-          backgroundColor: iDarkColor.background400,
-          borderColor: iDarkColor.background600,
+          backgroundColor: iDarkColor.background200,
+          borderColor: iDarkColor.background400,
         }}
-        _light={{
-          backgroundColor: '#93aab6',
-        }}
+        // _light={{
+        //   backgroundColor: '#93aab6',
+        // }}
         {...props}
       />
       <FormControl.ErrorMessage>{errorMessage}</FormControl.ErrorMessage>

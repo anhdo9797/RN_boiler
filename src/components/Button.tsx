@@ -18,9 +18,11 @@ export const IButton: FC<Props & IButtonProps> = ({label, type, ...props}) => {
       borderRadius="lg"
       _dark={{
         backgroundColor: iDarkColor.primary,
+        padding: '12px',
       }}
       _light={{
         backgroundColor: iDarkColor.primary,
+        padding: '12px',
       }}
       _text={{
         color: 'lightText',

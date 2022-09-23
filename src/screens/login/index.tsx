@@ -1,21 +1,19 @@
 import {AssetIcons} from '@assets';
-import Logo from '@assets/images/logo.svg';
-import {IButton, IContainer, IInput} from '@components';
-
+import {AppLogo, IButton, IContainer, IInput, ILink} from '@components';
 import {
   Button,
+  Divider,
   Heading,
   HStack,
   Icon,
   IconButton,
   Image,
-  Link,
   Text,
   useColorMode,
   VStack,
 } from 'native-base';
 import React, {FC, useState} from 'react';
-import {Pressable, useWindowDimensions} from 'react-native';
+import {Pressable} from 'react-native';
 import Entypo from 'react-native-vector-icons/Entypo';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {
@@ -51,8 +49,15 @@ export const LoginScreen: FC<Props> = () => {
     start: [0, 0],
     end: [1, 1],
   });
-  const {height} = useWindowDimensions();
   const [isShowPass, setIsShowPass] = useState(false);
+
+  const onTapRegister = () => {
+    // more code
+  };
+  const forgotPassword = () => {
+    // more code
+  };
+
   return (
     <IContainer
       _dark={{
@@ -65,9 +70,7 @@ export const LoginScreen: FC<Props> = () => {
         <ToggleTheme />
       </HStack>
 
-      <HStack justifyContent="center">
-        <Logo height={height / 5} />
-      </HStack>
+      <AppLogo />
 
       <VStack alignItems="center" marginTop="4">
         <Heading size="lg">Welcome to boiler</Heading>
@@ -86,7 +89,11 @@ export const LoginScreen: FC<Props> = () => {
             <Pressable onPress={() => setIsShowPass(!isShowPass)}>
               <Icon
                 marginRight="2"
-                as={<MaterialIcons name="visibility" />}
+                as={
+                  <MaterialIcons
+                    name={isShowPass ? 'visibility-off' : 'visibility'}
+                  />
+                }
                 size={5}
                 ml="2"
                 color="muted.400"
@@ -95,13 +102,16 @@ export const LoginScreen: FC<Props> = () => {
           }
         />
 
-        <Link alignSelf="flex-end" color="red.200">
+        <ILink alignSelf="flex-end" onPress={forgotPassword}>
           Forgot password?
-        </Link>
+        </ILink>
 
         <IButton label="Sign in" />
-
-        <Text alignSelf={'center'}>or</Text>
+        <HStack flex={1} alignItems="center" space={4}>
+          <Divider flex={1} />
+          <Text alignSelf={'center'}>OR</Text>
+          <Divider flex={1} />
+        </HStack>
 
         <HStack justifyContent="center">
           <Button variant="ghost" margin="2">
@@ -114,11 +124,16 @@ export const LoginScreen: FC<Props> = () => {
         </HStack>
       </VStack>
 
+      <HStack justifyContent="center">
+        <Text textAlign="center">Don't have account? </Text>
+        <ILink onPress={onTapRegister}>create account</ILink>
+      </HStack>
+
       <VStack alignItems="center" justifyContent={'flex-end'} flex={1}>
-        <Text bold color={iDarkColor.primary}>
+        <Text bold color={iDarkColor.primary} fontSize="xs">
           ReactNative Boiler
         </Text>
-        <Text italic>
+        <Text italic fontSize="xs">
           Version:{' '}
           <Text bold color={iDarkColor.primary}>
             1.0.0
