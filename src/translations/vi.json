@@ -1,0 +1,11 @@
+{
+  "welcome": "Welcome to boiler",
+  "signIn": "Đăng nhập",
+  "or": "HOẶC",
+  "donAccount": "Bạn chưa có tài khoản?",
+  "createAccount": "đăng kí",
+  "forgotPassword": "Quên mật khẩu?",
+  "placeholderEmail": "Nhập email",
+  "placeholderPassword": "Nhập mật khẩu",
+  "password": "Mật khẩu"
+}

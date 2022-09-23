@@ -1,5 +1,7 @@
 import {AssetIcons} from '@assets';
 import {AppLogo, IButton, IContainer, IInput, ILink} from '@components';
+import {SelectLanguage} from '@components/Select';
+import i18next from 'i18next';
 import {
   Button,
   Divider,
@@ -13,6 +15,7 @@ import {
   VStack,
 } from 'native-base';
 import React, {FC, useState} from 'react';
+import {useTranslation} from 'react-i18next';
 import {Pressable} from 'react-native';
 import Entypo from 'react-native-vector-icons/Entypo';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
@@ -44,6 +47,7 @@ const ToggleTheme = () => {
 };
 
 export const LoginScreen: FC<Props> = () => {
+  const {t} = useTranslation();
   const getBg = (isDark: boolean) => ({
     colors: isDark ? darkLinearColors : lightLinearColors,
     start: [0, 0],
@@ -66,14 +70,18 @@ export const LoginScreen: FC<Props> = () => {
       _light={{
         bg: {linearGradient: getBg(false)},
       }}>
-      <HStack justifyContent="flex-end">
+      <HStack justifyContent="space-between">
+        <SelectLanguage
+          value="vn"
+          onChange={(name: string) => i18next.changeLanguage(name)}
+        />
         <ToggleTheme />
       </HStack>
 
       <AppLogo />
 
       <VStack alignItems="center" marginTop="4">
-        <Heading size="lg">Welcome to boiler</Heading>
+        <Heading size="lg">{t('welcome')}</Heading>
         <Heading mt="1" fontWeight="medium" size="xs">
           Sign in to continue!
         </Heading>
@@ -82,8 +90,8 @@ export const LoginScreen: FC<Props> = () => {
       <VStack space={4} mt="5">
         <IInput label="Email" placeholder="Enter email" />
         <IInput
-          label="Password"
-          placeholder="Enter password"
+          label={t('password')}
+          placeholder={t('placeholderPassword')}
           type={isShowPass ? 'password' : 'text'}
           InputRightElement={
             <Pressable onPress={() => setIsShowPass(!isShowPass)}>
@@ -103,13 +111,19 @@ export const LoginScreen: FC<Props> = () => {
         />
 
         <ILink alignSelf="flex-end" onPress={forgotPassword}>
-          Forgot password?
+          {t('forgotPassword')}
         </ILink>
 
-        <IButton label="Sign in" />
+        <IButton label={t('signIn')} />
+
+        <HStack justifyContent="center">
+          <Text textAlign="center">{t('donAccount')}</Text>
+          <ILink onPress={onTapRegister}>{t('createAccount')}</ILink>
+        </HStack>
+
         <HStack flex={1} alignItems="center" space={4}>
           <Divider flex={1} />
-          <Text alignSelf={'center'}>OR</Text>
+          <Text alignSelf={'center'}>{t('or')}</Text>
           <Divider flex={1} />
         </HStack>
 
@@ -123,11 +137,6 @@ export const LoginScreen: FC<Props> = () => {
           </Button>
         </HStack>
       </VStack>
-
-      <HStack justifyContent="center">
-        <Text textAlign="center">Don't have account? </Text>
-        <ILink onPress={onTapRegister}>create account</ILink>
-      </HStack>
 
       <VStack alignItems="center" justifyContent={'flex-end'} flex={1}>
         <Text bold color={iDarkColor.primary} fontSize="xs">

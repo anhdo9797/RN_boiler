@@ -1,0 +1,11 @@
+{
+  "welcome": "Welcome to boiler",
+  "signIn": "Sign In",
+  "or": "OR",
+  "donAccount": "Don't have account?",
+  "createAccount": "create account",
+  "forgotPassword": "Forgot password?",
+  "placeholderEmail": "Enter email",
+  "placeholderPassword": "Enter password",
+  "password": "Password"
+}

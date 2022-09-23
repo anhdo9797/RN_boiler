@@ -20,7 +20,7 @@ export const SelectLanguage: FC<SelectLanguageProps> = ({value, onChange}) => (
     }}>
     <Select.Item
       label="Vietnamese"
-      value="vn"
+      value="vi"
       rightIcon={
         <Box flex={1} alignItems="flex-end">
           <Image
@@ -43,7 +43,7 @@ export const SelectLanguage: FC<SelectLanguageProps> = ({value, onChange}) => (
             size={10}
             width="16"
             borderRadius={10}
-            source={FlagsAssets.en}
+            source={AssetIcons.en}
             alt="en"
           />
         </Box>
