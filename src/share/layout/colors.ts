@@ -1,16 +1,18 @@
 const iDarkColor = {
-  primary: '#9333ea',
-  secondary: '#ca8a04',
-  border: '#dadada',
-  placeholder: '#a9a9a9',
-  darkGreen: '#16a34a',
-  green: '#22c55e',
-  darkBlue: '#2563eb',
+  primary: '#7c8b26',
+  primary200: '#90a22c',
+  primary400: '#bad039',
+  darkCyan: '#D93C3C',
+  background: '#323D42',
+  background200: '#333D35',
+  background400: '#2F3941',
+  background600: 'rgb(67,77,85)',
+
   blue: '#3b82f6',
 };
 
 const iLightColor = {
-  primary: '#a855f7',
+  primary: '#cec3be',
   secondary: '#eab308',
   border: '#dadada',
   placeholder: '#686868',
@@ -19,7 +21,8 @@ const iLightColor = {
   darkBlue: '#3b82f6',
   blue: '#60a5fa',
 };
-const darkLinearColors = [iDarkColor.green, iDarkColor.darkBlue];
-const lightLinearColors = [iLightColor.darkGreen, iDarkColor.blue];
+
+const darkLinearColors = [iDarkColor.background, iDarkColor.background200];
+const lightLinearColors = ['#22c55e', '#1A237E'];
 
 export {iDarkColor, iLightColor, darkLinearColors, lightLinearColors};

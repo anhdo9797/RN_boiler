@@ -36,13 +36,25 @@
     // "noFallthroughCasesInSwitch": true,    /* Report errors for fallthrough cases in switch statement. */
     /* Module Resolution Options */
     "moduleResolution": "node" /* Specify module resolution strategy: 'node' (Node.js) or 'classic' (TypeScript pre-1.6). */,
-    "baseUrl": "src/", /* Base directory to resolve non-absolute module names. */
+    "baseUrl": ".", /* Base directory to resolve non-absolute module names. */
     "paths": {
+      "@*": [
+        "src/*"
+      ],
       "@assets/*": [
         "./src/assets/*"
       ],
       "@components/*": [
         "./src/components/*"
+      ],
+      "@share/*": [
+        "./src/share/*"
+      ],
+      "@services/*": [
+        "./src/services/*"
+      ],
+      "@model/*": [
+        "./src/model/*"
       ],
       "*": [
         "declare/*",
@@ -76,7 +88,6 @@
     "src/**/*.spec.ts"
   ],
   "include": [
-    "src/components",
     "src/type/svg.d.ts",
     "src/**/*",
     "src"

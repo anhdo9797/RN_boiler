@@ -1,6 +1,6 @@
+import {AssetIcons} from '@assets';
 import {Box, Image, Select} from 'native-base';
 import React, {FC} from 'react';
-import {FlagsAssets} from '../assets';
 
 interface SelectLanguageProps {
   value: string;
@@ -27,7 +27,7 @@ export const SelectLanguage: FC<SelectLanguageProps> = ({value, onChange}) => (
             size={10}
             width="16"
             borderRadius={10}
-            source={FlagsAssets.vi}
+            source={AssetIcons.vi}
             alt="vi"
           />
         </Box>

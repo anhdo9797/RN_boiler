@@ -1,6 +1,7 @@
-import {Box} from 'native-base';
+import {Box, KeyboardAvoidingView} from 'native-base';
 import {InterfaceBoxProps} from 'native-base/lib/typescript/components/primitives/Box';
 import React, {FC} from 'react';
+import {Platform, ScrollView} from 'react-native';
 
 export const IContainer: FC<InterfaceBoxProps> = props => {
   return (
@@ -21,7 +22,17 @@ export const IContainer: FC<InterfaceBoxProps> = props => {
           color: 'darkText',
         },
       }}
-      {...props}
-    />
+      {...props}>
+      <KeyboardAvoidingView
+        style={{flex: 1}}
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
+        <ScrollView
+          contentContainerStyle={{flexGrow: 1}}
+          showsHorizontalScrollIndicator={false}
+          showsVerticalScrollIndicator={false}>
+          {props.children}
+        </ScrollView>
+      </KeyboardAvoidingView>
+    </Box>
   );
 };

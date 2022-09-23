@@ -24,7 +24,6 @@ const ButtonGroup: FC<Props> = ({buttons, value}) => {
             flex={1}
             onPress={button.action}
             key={button.key}
-            colorScheme="darkBlue"
             variant={isSelected ? 'solid' : 'ghost'}>
             <Text color={!isSelected ? 'darkText' : 'lightText'}>
               {button.label}
