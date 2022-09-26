@@ -1,7 +1,6 @@
+import {LANGUAGE_KEY} from '@configs';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {LanguageDetectorAsyncModule} from 'i18next';
-
-const STORE_LANGUAGE_KEY = 'settings.lang';
 
 const languageDetectorPlugin: LanguageDetectorAsyncModule = {
   type: 'languageDetector',
@@ -10,13 +9,13 @@ const languageDetectorPlugin: LanguageDetectorAsyncModule = {
   detect: async function (callback: (lang: string) => void) {
     try {
       //get stored language from Async storage
-      await AsyncStorage.getItem(STORE_LANGUAGE_KEY).then(language => {
+      await AsyncStorage.getItem(LANGUAGE_KEY).then(language => {
         if (language) {
           //if language was stored before, use this language in the app
           return callback(language);
         } else {
-          //if language was not stored yet, use device's locale
-          return '';
+          //if language was not stored yet, use default language
+          return 'en';
         }
       });
     } catch (error) {
@@ -26,7 +25,7 @@ const languageDetectorPlugin: LanguageDetectorAsyncModule = {
   cacheUserLanguage: async function (language: string) {
     try {
       //save a user's language choice in Async storage
-      await AsyncStorage.setItem(STORE_LANGUAGE_KEY, language);
+      await AsyncStorage.setItem(LANGUAGE_KEY, language);
     } catch (error) {}
   },
 };

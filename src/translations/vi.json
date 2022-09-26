@@ -7,5 +7,7 @@
   "forgotPassword": "Quên mật khẩu?",
   "placeholderEmail": "Nhập email",
   "placeholderPassword": "Nhập mật khẩu",
-  "password": "Mật khẩu"
+  "password": "Mật khẩu",
+  "singInContinue": "Đăng nhập để tiếp tục",
+  "selectLang": "Chọn ngôn ngữ"
 }

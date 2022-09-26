@@ -7,5 +7,7 @@
   "forgotPassword": "Forgot password?",
   "placeholderEmail": "Enter email",
   "placeholderPassword": "Enter password",
-  "password": "Password"
+  "password": "Password",
+  "singInContinue": "Sing in to continue!",
+  "selectLang": "Select language"
 }

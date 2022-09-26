@@ -2,5 +2,7 @@
   "appName": "ReactNative Boiler",
   "login": "Login",
   "register": "Register",
-  "forgotPassWord": "Forgot password"
+  "forgotPassWord": "Forgot password",
+  "selectLanguage": "Select language",
+  "singInContinue": "Sign in to continue!"
 }

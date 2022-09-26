@@ -7,7 +7,6 @@ import {
   Divider,
   Heading,
   HStack,
-  Icon,
   IconButton,
   Image,
   Text,
@@ -16,7 +15,6 @@ import {
 } from 'native-base';
 import React, {FC, useState} from 'react';
 import {useTranslation} from 'react-i18next';
-import {Pressable} from 'react-native';
 import Entypo from 'react-native-vector-icons/Entypo';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {
@@ -29,6 +27,7 @@ interface Props {}
 
 const ToggleTheme = () => {
   const {colorMode, toggleColorMode} = useColorMode();
+
   const isDark = colorMode === 'dark';
   const iconType = isDark ? MaterialIcons : Entypo;
   const name = isDark ? 'nightlight-round' : 'light-up';
@@ -53,7 +52,7 @@ export const LoginScreen: FC<Props> = () => {
     start: [0, 0],
     end: [1, 1],
   });
-  const [isShowPass, setIsShowPass] = useState(false);
+  const [isShowPass, setIsShowPass] = useState(true);
 
   const onTapRegister = () => {
     // more code
@@ -70,10 +69,10 @@ export const LoginScreen: FC<Props> = () => {
       _light={{
         bg: {linearGradient: getBg(false)},
       }}>
-      <HStack justifyContent="space-between">
+      <HStack justifyContent="space-between" alignItems="center">
         <SelectLanguage
-          value="vn"
-          onChange={(name: string) => i18next.changeLanguage(name)}
+          value={i18next.language}
+          onChange={i18next.changeLanguage}
         />
         <ToggleTheme />
       </HStack>
@@ -83,7 +82,7 @@ export const LoginScreen: FC<Props> = () => {
       <VStack alignItems="center" marginTop="4">
         <Heading size="lg">{t('welcome')}</Heading>
         <Heading mt="1" fontWeight="medium" size="xs">
-          Sign in to continue!
+          {t('singInContinue')}
         </Heading>
       </VStack>
 
@@ -93,21 +92,9 @@ export const LoginScreen: FC<Props> = () => {
           label={t('password')}
           placeholder={t('placeholderPassword')}
           type={isShowPass ? 'password' : 'text'}
-          InputRightElement={
-            <Pressable onPress={() => setIsShowPass(!isShowPass)}>
-              <Icon
-                marginRight="2"
-                as={
-                  <MaterialIcons
-                    name={isShowPass ? 'visibility-off' : 'visibility'}
-                  />
-                }
-                size={5}
-                ml="2"
-                color="muted.400"
-              />
-            </Pressable>
-          }
+          isShowPass={isShowPass}
+          isSecurity={true}
+          onToggleShowPass={() => setIsShowPass(!isShowPass)}
         />
 
         <ILink alignSelf="flex-end" onPress={forgotPassword}>
@@ -117,7 +104,7 @@ export const LoginScreen: FC<Props> = () => {
         <IButton label={t('signIn')} />
 
         <HStack justifyContent="center">
-          <Text textAlign="center">{t('donAccount')}</Text>
+          <Text textAlign="center">{t('donAccount')} </Text>
           <ILink onPress={onTapRegister}>{t('createAccount')}</ILink>
         </HStack>
 
