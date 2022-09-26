@@ -2,6 +2,7 @@ import {iDarkColor} from '@share/layout';
 import {FormControl, Icon, Input, Pressable} from 'native-base';
 import {IInputProps} from 'native-base/lib/typescript/components/primitives/Input/types';
 import React, {FC} from 'react';
+import {Control, Controller} from 'react-hook-form';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 interface Props {
   label?: string;
@@ -11,16 +12,19 @@ interface Props {
   onToggleShowPass?: () => void;
   isShowPass?: boolean;
   isSecurity?: boolean;
+  control?: Control<any>;
+  name?: string;
 }
 
 export const IInput: FC<IInputProps & Props> = ({
   label,
   placeholder,
   errorMessage,
-  onChangeText,
+  control,
   isShowPass,
   onToggleShowPass,
   isSecurity,
+  name,
   ...props
 }) => {
   const renderInputRightElement = () =>
@@ -30,7 +34,7 @@ export const IInput: FC<IInputProps & Props> = ({
           marginRight="2"
           as={
             <MaterialIcons
-              name={isShowPass ? 'visibility-off' : 'visibility'}
+              name={!isShowPass ? 'visibility-off' : 'visibility'}
             />
           }
           size={5}
@@ -44,29 +48,35 @@ export const IInput: FC<IInputProps & Props> = ({
   return (
     <FormControl isInvalid={!!errorMessage}>
       {label && (
-        <FormControl.Label
-          fontWeight={'bold'}
-          _dark={{color: 'darkText'}}
-          _light={{color: 'lightText'}}>
-          {label}
-        </FormControl.Label>
+        <FormControl.Label fontWeight={'bold'}>{label}</FormControl.Label>
       )}
-
-      <Input
-        variant="filled"
-        type={placeholder}
-        onChangeText={onChangeText}
-        borderRadius="lg"
-        shadow={2}
-        InputRightElement={renderInputRightElement()}
-        _dark={{
-          backgroundColor: iDarkColor.background200,
-          borderColor: iDarkColor.background400,
+      <Controller
+        control={control}
+        rules={{
+          required: true,
         }}
-        // _light={{
-        //   backgroundColor: '#93aab6',
-        // }}
-        {...props}
+        render={({field: {onChange, onBlur, value}}) => (
+          <Input
+            variant="filled"
+            type={placeholder}
+            onBlur={onBlur}
+            onChangeText={onChange}
+            borderRadius="lg"
+            value={value}
+            shadow={1}
+            InputRightElement={renderInputRightElement()}
+            _dark={{
+              backgroundColor: iDarkColor.background200,
+              borderColor: iDarkColor.background400,
+            }}
+            _light={{
+              backgroundColor: 'white',
+              borderColor: 'white',
+            }}
+            {...props}
+          />
+        )}
+        name={name ?? 'TextInput'}
       />
       <FormControl.ErrorMessage>{errorMessage}</FormControl.ErrorMessage>
     </FormControl>

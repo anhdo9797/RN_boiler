@@ -1,6 +1,8 @@
 import {AssetIcons} from '@assets';
 import {AppLogo, IButton, IContainer, IInput, ILink} from '@components';
 import {SelectLanguage} from '@components/Select';
+import {yupResolver} from '@hookform/resolvers/yup';
+import {jsUcfirst} from '@utils';
 import i18next from 'i18next';
 import {
   Button,
@@ -14,9 +16,11 @@ import {
   VStack,
 } from 'native-base';
 import React, {FC, useState} from 'react';
+import {useForm} from 'react-hook-form';
 import {useTranslation} from 'react-i18next';
 import Entypo from 'react-native-vector-icons/Entypo';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import * as yup from 'yup';
 import {
   darkLinearColors,
   iDarkColor,
@@ -47,6 +51,29 @@ const ToggleTheme = () => {
 
 export const LoginScreen: FC<Props> = () => {
   const {t} = useTranslation();
+
+  const schema = yup.object().shape({
+    email: yup
+      .string()
+      .email(i18next.t('validation.incorrectEmail'))
+      .required(i18next.t('validation.requireEmail')),
+    password: yup
+      .string()
+      .min(6, i18next.t('validation.incorrectPassword'))
+      .required(i18next.t('validation.requirePassword')),
+  });
+
+  const {
+    control,
+    handleSubmit,
+    formState: {errors},
+  } = useForm<{
+    email: string;
+    password: string;
+  }>({
+    resolver: yupResolver(schema),
+  });
+
   const getBg = (isDark: boolean) => ({
     colors: isDark ? darkLinearColors : lightLinearColors,
     start: [0, 0],
@@ -61,6 +88,10 @@ export const LoginScreen: FC<Props> = () => {
     // more code
   };
 
+  const onSigIn = (json: object) => {
+    console.log('on submit:', json);
+  };
+
   return (
     <IContainer
       _dark={{
@@ -69,7 +100,7 @@ export const LoginScreen: FC<Props> = () => {
       _light={{
         bg: {linearGradient: getBg(false)},
       }}>
-      <HStack justifyContent="space-between" alignItems="center">
+      <HStack justifyContent="space-between" alignItems="center" padding={'4'}>
         <SelectLanguage
           value={i18next.language}
           onChange={i18next.changeLanguage}
@@ -86,46 +117,63 @@ export const LoginScreen: FC<Props> = () => {
         </Heading>
       </VStack>
 
-      <VStack space={4} mt="5">
-        <IInput label="Email" placeholder="Enter email" />
-        <IInput
-          label={t('password')}
-          placeholder={t('placeholderPassword')}
-          type={isShowPass ? 'password' : 'text'}
-          isShowPass={isShowPass}
-          isSecurity={true}
-          onToggleShowPass={() => setIsShowPass(!isShowPass)}
-        />
+      <VStack flex={1} justifyContent="space-between">
+        <VStack space={4} marginRight="4" marginLeft="4" marginTop="1">
+          <IInput
+            control={control}
+            name="email"
+            placeholder={t('placeholderEmail')}
+            label={'Email'}
+            errorMessage={errors?.email?.message}
+          />
 
-        <ILink alignSelf="flex-end" onPress={forgotPassword}>
-          {t('forgotPassword')}
-        </ILink>
+          <IInput
+            control={control}
+            name="password"
+            placeholder={t('placeholderPassword')}
+            label={jsUcfirst(t('password'))}
+            errorMessage={errors?.password?.message}
+            type={isShowPass ? 'password' : 'text'}
+            onToggleShowPass={() => setIsShowPass(!isShowPass)}
+            isSecurity={true}
+          />
+          <ILink alignSelf="flex-end" onPress={forgotPassword}>
+            {t('forgotPassword')}
+          </ILink>
 
-        <IButton label={t('signIn')} />
+          <IButton label={t('signIn')} onPress={handleSubmit(onSigIn)} />
+        </VStack>
 
-        <HStack justifyContent="center">
-          <Text textAlign="center">{t('donAccount')} </Text>
-          <ILink onPress={onTapRegister}>{t('createAccount')}</ILink>
-        </HStack>
+        <VStack space={2}>
+          <HStack justifyContent="center">
+            <Text textAlign="center">{t('donAccount')} </Text>
+            <ILink onPress={onTapRegister}>{t('createAccount')}</ILink>
+          </HStack>
 
-        <HStack flex={1} alignItems="center" space={4}>
-          <Divider flex={1} />
-          <Text alignSelf={'center'}>{t('or')}</Text>
-          <Divider flex={1} />
-        </HStack>
+          <HStack
+            flex={1}
+            alignItems="center"
+            space={4}
+            width="80%"
+            alignSelf="center">
+            <Divider flex={1} />
+            <Text alignSelf={'center'}>{t('or')}</Text>
+            <Divider flex={1} />
+          </HStack>
 
-        <HStack justifyContent="center">
-          <Button variant="ghost" margin="2">
-            <Image source={AssetIcons.fb} size="8" alt="facebook" />
-          </Button>
+          <HStack justifyContent="center">
+            <Button variant="ghost" margin="2">
+              <Image source={AssetIcons.fb} size="8" alt="facebook" />
+            </Button>
 
-          <Button variant="ghost" margin="2">
-            <Image source={AssetIcons.google} size="8" alt="google" />
-          </Button>
-        </HStack>
+            <Button variant="ghost" margin="2">
+              <Image source={AssetIcons.google} size="8" alt="google" />
+            </Button>
+          </HStack>
+        </VStack>
       </VStack>
 
-      <VStack alignItems="center" justifyContent={'flex-end'} flex={1}>
+      <VStack alignItems="center" justifyContent={'flex-end'}>
         <Text bold color={iDarkColor.primary} fontSize="xs">
           ReactNative Boiler
         </Text>

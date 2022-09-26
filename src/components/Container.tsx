@@ -7,7 +7,7 @@ export const IContainer: FC<InterfaceBoxProps> = props => {
   return (
     <Box
       flex={1}
-      padding="4"
+      // padding="4"
       _dark={{
         backgroundColor: 'black',
       }}

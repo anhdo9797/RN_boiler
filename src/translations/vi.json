@@ -2,12 +2,19 @@
   "welcome": "Welcome to boiler",
   "signIn": "Đăng nhập",
   "or": "HOẶC",
+  "password": "mật khẩu",
   "donAccount": "Bạn chưa có tài khoản?",
   "createAccount": "đăng kí",
   "forgotPassword": "Quên mật khẩu?",
   "placeholderEmail": "Nhập email",
   "placeholderPassword": "Nhập mật khẩu",
-  "password": "Mật khẩu",
+
   "singInContinue": "Đăng nhập để tiếp tục",
-  "selectLang": "Chọn ngôn ngữ"
+  "selectLang": "Chọn ngôn ngữ",
+  "validation": {
+    "requirePassword": "Vui lòng nhập mật khẩu",
+    "incorrectPassword": "Mật khẩu tối thiểu 6 kí tự",
+    "incorrectEmail": "Email không đúng.",
+    "requireEmail": "Vui lòng nhập email"
+  }
 }

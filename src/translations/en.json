@@ -2,12 +2,19 @@
   "welcome": "Welcome to boiler",
   "signIn": "Sign In",
   "or": "OR",
+  "password": "password",
   "donAccount": "Don't have account?",
   "createAccount": "create account",
-  "forgotPassword": "Forgot password?",
+  "forgotPassword": "Forgot $t(password)?",
   "placeholderEmail": "Enter email",
-  "placeholderPassword": "Enter password",
-  "password": "Password",
+  "placeholderPassword": "Enter $t(password)",
+
   "singInContinue": "Sing in to continue!",
-  "selectLang": "Select language"
+  "selectLang": "Select language",
+  "validation": {
+    "requirePassword": "Please enter a $t(password)",
+    "incorrectPassword": "Password minimum 6 characters",
+    "incorrectEmail": "Incorrect email",
+    "requireEmail": "Please enter a email"
+  }
 }
