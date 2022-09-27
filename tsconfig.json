@@ -68,6 +68,9 @@
       "@screens/*": [
         "./src/screens/*"
       ],
+      "@hooks/*": [
+        "./src/hooks/*"
+      ],
       "*": [
         "declare/*",
         "*",

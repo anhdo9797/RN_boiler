@@ -2,6 +2,8 @@ import {AssetIcons} from '@assets';
 import {AppLogo, IButton, IContainer, IInput, ILink} from '@components';
 import {SelectLanguage} from '@components/Select';
 import {yupResolver} from '@hookform/resolvers/yup';
+import {useToggle} from '@hooks';
+import {LoginParams} from '@models';
 import {jsUcfirst} from '@utils';
 import i18next from 'i18next';
 import {
@@ -15,7 +17,7 @@ import {
   useColorMode,
   VStack,
 } from 'native-base';
-import React, {FC, useState} from 'react';
+import React, {FC, useContext} from 'react';
 import {useForm} from 'react-hook-form';
 import {useTranslation} from 'react-i18next';
 import Entypo from 'react-native-vector-icons/Entypo';
@@ -26,51 +28,32 @@ import {
   iDarkColor,
   lightLinearColors,
 } from '../../share/layout';
+import {LoginContext, LoginProvider} from './login-context';
 
 interface Props {}
 
-const ToggleTheme = () => {
-  const {colorMode, toggleColorMode} = useColorMode();
-
-  const isDark = colorMode === 'dark';
-  const iconType = isDark ? MaterialIcons : Entypo;
-  const name = isDark ? 'nightlight-round' : 'light-up';
-
-  return (
-    <IconButton
-      onPress={toggleColorMode}
-      color={'lightText'}
-      _icon={{
-        as: iconType,
-        name: name,
-        color: isDark ? 'lightText' : 'darkText',
-      }}
-    />
-  );
-};
-
-export const LoginScreen: FC<Props> = () => {
+const LoginUI: FC<Props> = () => {
   const {t} = useTranslation();
+  const {onSignIn, onTapForgotPassword, onTapRegisterScreen} =
+    useContext(LoginContext);
+  const {toggle, isToggle} = useToggle();
 
   const schema = yup.object().shape({
     email: yup
       .string()
-      .email(i18next.t('validation.incorrectEmail'))
-      .required(i18next.t('validation.requireEmail')),
+      .email(t('validation.incorrectEmail'))
+      .required(t('validation.requireEmail')),
     password: yup
       .string()
-      .min(6, i18next.t('validation.incorrectPassword'))
-      .required(i18next.t('validation.requirePassword')),
+      .min(6, t('validation.incorrectPassword'))
+      .required(t('validation.requirePassword')),
   });
 
   const {
     control,
     handleSubmit,
     formState: {errors},
-  } = useForm<{
-    email: string;
-    password: string;
-  }>({
+  } = useForm<LoginParams>({
     resolver: yupResolver(schema),
   });
 
@@ -79,18 +62,6 @@ export const LoginScreen: FC<Props> = () => {
     start: [0, 0],
     end: [1, 1],
   });
-  const [isShowPass, setIsShowPass] = useState(true);
-
-  const onTapRegister = () => {
-    // more code
-  };
-  const forgotPassword = () => {
-    // more code
-  };
-
-  const onSigIn = (json: object) => {
-    console.log('on submit:', json);
-  };
 
   return (
     <IContainer
@@ -133,21 +104,22 @@ export const LoginScreen: FC<Props> = () => {
             placeholder={t('placeholderPassword')}
             label={jsUcfirst(t('password'))}
             errorMessage={errors?.password?.message}
-            type={isShowPass ? 'password' : 'text'}
-            onToggleShowPass={() => setIsShowPass(!isShowPass)}
+            type={isToggle ? 'password' : 'text'}
+            onToggleShowPass={toggle}
             isSecurity={true}
+            isShowPass={isToggle}
           />
-          <ILink alignSelf="flex-end" onPress={forgotPassword}>
+          <ILink alignSelf="flex-end" onPress={onTapForgotPassword}>
             {t('forgotPassword')}
           </ILink>
 
-          <IButton label={t('signIn')} onPress={handleSubmit(onSigIn)} />
+          <IButton label={t('signIn')} onPress={handleSubmit(onSignIn)} />
         </VStack>
 
         <VStack space={2}>
           <HStack justifyContent="center">
             <Text textAlign="center">{t('donAccount')} </Text>
-            <ILink onPress={onTapRegister}>{t('createAccount')}</ILink>
+            <ILink onPress={onTapRegisterScreen}>{t('createAccount')}</ILink>
           </HStack>
 
           <HStack
@@ -185,5 +157,31 @@ export const LoginScreen: FC<Props> = () => {
         </Text>
       </VStack>
     </IContainer>
+  );
+};
+
+export const LoginScreen = () => (
+  <LoginProvider>
+    <LoginUI />
+  </LoginProvider>
+);
+
+const ToggleTheme = () => {
+  const {colorMode, toggleColorMode} = useColorMode();
+
+  const isDark = colorMode === 'dark';
+  const iconType = isDark ? MaterialIcons : Entypo;
+  const name = isDark ? 'nightlight-round' : 'light-up';
+
+  return (
+    <IconButton
+      onPress={toggleColorMode}
+      color={'lightText'}
+      _icon={{
+        as: iconType,
+        name: name,
+        color: isDark ? 'lightText' : 'darkText',
+      }}
+    />
   );
 };

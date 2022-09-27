@@ -17,6 +17,7 @@ module.exports = {
           '@utils': './src/utils',
           '@screens': './src/screens',
           '@navigation': './src/navigation',
+          '@hooks': './src/hooks',
         },
       },
     ],

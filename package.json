@@ -10,7 +10,8 @@
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "adb": "adb reverse tcp:8081 tcp:8081",
     "android.bundle": "react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res/",
-    "android.clean": "cd android && ./gradlew clean && cd .."
+    "android.clean": "cd android && ./gradlew clean && cd ..",
+    "ios.bundle": "react-native bundle --dev false --entry-file index.js --bundle-output ios/main.jsbundle --platform ios"
   },
   "dependencies": {
     "@hookform/resolvers": "^2.9.8",

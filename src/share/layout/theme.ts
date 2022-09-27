@@ -38,8 +38,8 @@ const colors = {
 export const theme = extendTheme({
   colors,
   fonts: {
-    heading: 'OpenSans',
-    body: 'OpenSans',
-    mono: 'OpenSans',
+    heading: 'SourceSansPro-Regular',
+    body: 'SourceSansPro-Regular',
+    mono: 'SourceSansPro-Regular',
   },
 });

@@ -11,6 +11,7 @@ export function navigate<RouteName extends keyof RootStackParamList>(
   name: RouteName,
   params?: RootStackParamList[RouteName],
 ) {
+  console.log('APP NAVIGATE TO: ', name);
   navigationRef.current?.navigate(name as any, params);
 }
 

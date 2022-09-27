@@ -58,6 +58,7 @@ export const IInput: FC<IInputProps & Props> = ({
         render={({field: {onChange, onBlur, value}}) => (
           <Input
             variant="filled"
+            padding="12px"
             type={placeholder}
             onBlur={onBlur}
             onChangeText={onChange}
