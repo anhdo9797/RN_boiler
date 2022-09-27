@@ -16,5 +16,8 @@
     "incorrectPassword": "Password minimum 6 characters",
     "incorrectEmail": "Incorrect email",
     "requireEmail": "Please enter a email"
-  }
+  },
+  "confirmPassword": "Confirm password",
+  "register": "Sign Up",
+  "hasAccount": "Do have account?"
 }

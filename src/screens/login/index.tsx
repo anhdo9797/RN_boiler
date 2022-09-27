@@ -64,13 +64,7 @@ const LoginUI: FC<Props> = () => {
   });
 
   return (
-    <IContainer
-      _dark={{
-        bg: {linearGradient: getBg(true)},
-      }}
-      _light={{
-        bg: {linearGradient: getBg(false)},
-      }}>
+    <IContainer useLinear={true}>
       <HStack justifyContent="space-between" alignItems="center" padding={'4'}>
         <SelectLanguage
           value={i18next.language}
@@ -160,9 +154,9 @@ const LoginUI: FC<Props> = () => {
   );
 };
 
-export const LoginScreen = () => (
-  <LoginProvider>
-    <LoginUI />
+export const LoginScreen = (props: any) => (
+  <LoginProvider {...props}>
+    <LoginUI {...props} />
   </LoginProvider>
 );
 

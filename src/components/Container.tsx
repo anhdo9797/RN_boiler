@@ -1,18 +1,35 @@
+import {darkLinearColors, lightLinearColors} from '@share/layout';
 import {Box, KeyboardAvoidingView} from 'native-base';
 import {InterfaceBoxProps} from 'native-base/lib/typescript/components/primitives/Box';
 import React, {FC} from 'react';
 import {Platform, SafeAreaView, ScrollView} from 'react-native';
 
-export const IContainer: FC<InterfaceBoxProps> = props => {
+interface IContainerProps {
+  noneSafe?: boolean;
+  useLinear?: boolean;
+}
+
+export const IContainer: FC<InterfaceBoxProps & IContainerProps> = ({
+  noneSafe,
+  useLinear,
+  ...props
+}) => {
+  const getBg = (isDark: boolean) => ({
+    colors: isDark ? darkLinearColors : lightLinearColors,
+    start: [0, 0],
+    end: [1, 1],
+  });
+
   return (
     <Box
       flex={1}
-      // padding="4"
       _dark={{
         backgroundColor: 'black',
+        bg: !!useLinear ? {linearGradient: getBg(true)} : {},
       }}
       _light={{
         backgroundColor: 'white',
+        bg: !!useLinear ? {linearGradient: getBg(false)} : {},
       }}
       _text={{
         _light: {

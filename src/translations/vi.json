@@ -16,5 +16,8 @@
     "incorrectPassword": "Mật khẩu tối thiểu 6 kí tự",
     "incorrectEmail": "Email không đúng.",
     "requireEmail": "Vui lòng nhập email"
-  }
+  },
+  "confirmPassword": "Xác nhận mật khẩu",
+  "register": "Đăng kí",
+  "hasAccount": "Bạn đã có tài khoản?"
 }
