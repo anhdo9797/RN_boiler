@@ -62,6 +62,12 @@
       "@utils/*": [
         "./src/utils/*"
       ],
+      "@navigation/*": [
+        "./src/navigation/*"
+      ],
+      "@screens/*": [
+        "./src/screens/*"
+      ],
       "*": [
         "declare/*",
         "*",
