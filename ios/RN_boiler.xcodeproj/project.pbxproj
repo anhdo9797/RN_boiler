@@ -34,6 +34,7 @@
 		00E356F21AD99517003FC87E /* RN_boilerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RN_boilerTests.m; sourceTree = "<group>"; };
 		0796AC3C3FBD69334FF433C1 /* Pods-RN_boiler.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RN_boiler.debug.xcconfig"; path = "Target Support Files/Pods-RN_boiler/Pods-RN_boiler.debug.xcconfig"; sourceTree = "<group>"; };
 		0814C16C271202C703AC8C7D /* Pods-RN_boiler-RN_boilerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RN_boiler-RN_boilerTests.debug.xcconfig"; path = "Target Support Files/Pods-RN_boiler-RN_boilerTests/Pods-RN_boiler-RN_boilerTests.debug.xcconfig"; sourceTree = "<group>"; };
+		0F2270AD8BDE42F7A8C80506 /* SourceSansPro-Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "SourceSansPro-Italic.ttf"; path = "../src/assets/fonts/SourceSansPro-Italic.ttf"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* RN_boiler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RN_boiler.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = RN_boiler/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = RN_boiler/AppDelegate.m; sourceTree = "<group>"; };
@@ -44,6 +45,7 @@
 		2F98E7E95C2C43209487CC0D /* OpenSans.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = OpenSans.ttf; path = ../src/assets/fonts/OpenSans.ttf; sourceTree = "<group>"; };
 		7FED7E644AF54B8A8CD7D3BF /* OpenSansItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = OpenSansItalic.ttf; path = ../src/assets/fonts/OpenSansItalic.ttf; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = RN_boiler/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		C245730A37F84D63914BE225 /* SourceSansPro-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "SourceSansPro-Regular.ttf"; path = "../src/assets/fonts/SourceSansPro-Regular.ttf"; sourceTree = "<group>"; };
 		CF1838D1B944ED97C157BFEF /* Pods-RN_boiler.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RN_boiler.release.xcconfig"; path = "Target Support Files/Pods-RN_boiler/Pods-RN_boiler.release.xcconfig"; sourceTree = "<group>"; };
 		D7EBF99EF9357641ACCBEDA2 /* Pods-RN_boiler-RN_boilerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RN_boiler-RN_boilerTests.release.xcconfig"; path = "Target Support Files/Pods-RN_boiler-RN_boilerTests/Pods-RN_boiler-RN_boilerTests.release.xcconfig"; sourceTree = "<group>"; };
 		E3A6CE7728E2DA2700E99580 /* FontAwesome5_Brands.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome5_Brands.ttf; sourceTree = "<group>"; };
@@ -64,8 +66,6 @@
 		E3A6CE8628E2DA2700E99580 /* FontAwesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome.ttf; sourceTree = "<group>"; };
 		EC1F7BF6D8148A2B1A6A5C96 /* libPods-RN_boiler.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RN_boiler.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
-		0F2270AD8BDE42F7A8C80506 /* SourceSansPro-Italic.ttf */ = {isa = PBXFileReference; name = "SourceSansPro-Italic.ttf"; path = "../src/assets/fonts/SourceSansPro-Italic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		C245730A37F84D63914BE225 /* SourceSansPro-Regular.ttf */ = {isa = PBXFileReference; name = "SourceSansPro-Regular.ttf"; path = "../src/assets/fonts/SourceSansPro-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
