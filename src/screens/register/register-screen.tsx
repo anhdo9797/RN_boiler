@@ -21,7 +21,7 @@ export const RegisterScreen = (props: any) => (
 
 const Register: FC<{}> = () => {
   const {t} = useTranslation();
-  const {isToggle, toggle} = useToggle();
+  const {isToggle, toggle} = useToggle(true);
   const {onRegister} = useContext(RegisterContext);
   const schema = yup.object().shape({
     email: yup
@@ -34,8 +34,7 @@ const Register: FC<{}> = () => {
       .required(t('validation.requirePassword')),
     confirmPassword: yup
       .string()
-      .min(6, t('validation.incorrectPassword'))
-      .required(t('validation.requirePassword')),
+      .oneOf([yup.ref('password'), null], t('validation.passwordNotMatch')),
   });
 
   const {

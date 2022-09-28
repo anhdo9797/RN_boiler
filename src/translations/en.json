@@ -15,7 +15,8 @@
     "requirePassword": "Please enter a $t(password)",
     "incorrectPassword": "Password minimum 6 characters",
     "incorrectEmail": "Incorrect email",
-    "requireEmail": "Please enter a email"
+    "requireEmail": "Please enter a email",
+    "passwordNotMatch": "The password not match"
   },
   "confirmPassword": "Confirm password",
   "register": "Sign Up",

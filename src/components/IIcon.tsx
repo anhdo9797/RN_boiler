@@ -1,59 +1,40 @@
+import {Icon} from 'native-base';
+import {InterfaceIconProps} from 'native-base/lib/typescript/components/primitives/Icon/types';
 import React, {FC} from 'react';
-
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Feather from 'react-native-vector-icons/Feather';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import {ViewStyle} from 'react-native';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 interface Props {
   name: string;
-  size?: number;
-  styles?: ViewStyle;
-  color?: string;
 
   type?:
     | 'MaterialIcons'
     | 'EvilIcons'
     | 'Ionicons'
     | 'Feather'
-    | 'MaterialCommunityIcons';
+    | 'MaterialCommunityIcons'
+    | 'AntDesign';
 }
 
-const IIcon: FC<Props> = ({type, name, size, styles, color}) => {
+const IIcon: FC<Props & InterfaceIconProps> = ({type, name, ...props}) => {
   switch (type) {
-    case 'EvilIcons':
-      return (
-        <EvilIcons name={name} size={size ?? 14} style={styles} color={color} />
-      );
-    case 'MaterialCommunityIcons':
-      return (
-        <MaterialCommunityIcons
-          name={name}
-          size={size ?? 14}
-          style={styles}
-          color={color}
-        />
-      );
+    case 'AntDesign':
+      return <Icon name={name} as={AntDesign} {...props} />;
     case 'Feather':
-      return (
-        <Feather name={name} size={size ?? 14} style={styles} color={color} />
-      );
-    case 'Ionicons':
-      return (
-        <Ionicons name={name} size={size ?? 14} style={styles} color={color} />
-      );
+      return <Icon name={name} as={Feather} {...props} />;
+    case 'MaterialCommunityIcons':
+      return <Icon name={name} as={MaterialCommunityIcons} {...props} />;
+    case 'EvilIcons':
+      return <Icon name={name} as={EvilIcons} {...props} />;
+    case 'MaterialIcons':
+      return <Icon name={name} as={MaterialIcons} {...props} />;
 
     default:
-      return (
-        <MaterialIcons
-          name={name}
-          size={size ?? 14}
-          style={styles}
-          color={color}
-        />
-      );
+      return <Icon name={name} as={Ionicons} {...props} />;
   }
 };
 

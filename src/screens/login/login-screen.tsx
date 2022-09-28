@@ -1,5 +1,12 @@
 import {AssetIcons} from '@assets';
-import {AppLogo, IButton, IContainer, IInput, ILink} from '@components';
+import {
+  AppLogo,
+  IButton,
+  IContainer,
+  IInput,
+  ILink,
+  ToggleTheme,
+} from '@components';
 import {SelectLanguage} from '@components/Select';
 import {yupResolver} from '@hookform/resolvers/yup';
 import {useToggle} from '@hooks';
@@ -32,7 +39,7 @@ import {LoginContext, LoginProvider} from './login-context';
 
 interface Props {}
 
-const LoginUI: FC<Props> = () => {
+const Login: FC<Props> = () => {
   const {t} = useTranslation();
   const {onSignIn, onTapForgotPassword, onTapRegisterScreen} =
     useContext(LoginContext);
@@ -55,12 +62,6 @@ const LoginUI: FC<Props> = () => {
     formState: {errors},
   } = useForm<LoginParams>({
     resolver: yupResolver(schema),
-  });
-
-  const getBg = (isDark: boolean) => ({
-    colors: isDark ? darkLinearColors : lightLinearColors,
-    start: [0, 0],
-    end: [1, 1],
   });
 
   return (
@@ -156,26 +157,6 @@ const LoginUI: FC<Props> = () => {
 
 export const LoginScreen = (props: any) => (
   <LoginProvider {...props}>
-    <LoginUI {...props} />
+    <Login {...props} />
   </LoginProvider>
 );
-
-const ToggleTheme = () => {
-  const {colorMode, toggleColorMode} = useColorMode();
-
-  const isDark = colorMode === 'dark';
-  const iconType = isDark ? MaterialIcons : Entypo;
-  const name = isDark ? 'nightlight-round' : 'light-up';
-
-  return (
-    <IconButton
-      onPress={toggleColorMode}
-      color={'lightText'}
-      _icon={{
-        as: iconType,
-        name: name,
-        color: isDark ? 'lightText' : 'darkText',
-      }}
-    />
-  );
-};
