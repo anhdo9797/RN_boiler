@@ -1,7 +1,7 @@
-import {THEME_MODE, TOKEN} from '@configs';
 import {useToggle} from '@hooks';
 import {User} from '@models';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {THEME_MODE, TOKEN} from '@share/constance';
 import {useColorMode} from 'native-base';
 import React, {createContext, useContext, useEffect, useState} from 'react';
 import SplashScreen from 'react-native-splash-screen';

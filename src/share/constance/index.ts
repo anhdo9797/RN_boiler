@@ -1,2 +1,2 @@
-export * from './RouterName';
-export * from './StoreKey';
+export * from './storage-key';
+export * from './endpoint';

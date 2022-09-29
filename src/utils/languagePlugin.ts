@@ -1,5 +1,5 @@
-import {LANGUAGE_KEY} from '@configs';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {LANGUAGE_KEY} from '@share/constance';
 import {LanguageDetectorAsyncModule} from 'i18next';
 
 const languageDetectorPlugin: LanguageDetectorAsyncModule = {

@@ -56,9 +56,6 @@
       "@model/*": [
         "./src/model/*"
       ],
-      "@configs/*": [
-        "./src/configs/*"
-      ],
       "@utils/*": [
         "./src/utils/*"
       ],
