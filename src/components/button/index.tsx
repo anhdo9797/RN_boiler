@@ -1,3 +1,4 @@
+import {SPACER} from '@share/layout';
 import {Button, Text} from 'native-base';
 import {IButtonProps} from 'native-base/lib/typescript/components/primitives/Button/types';
 import React, {FC} from 'react';
@@ -15,14 +16,7 @@ export const IButton: FC<Props & IButtonProps> = ({label, type, ...props}) => {
     <Button
       shadow={3}
       borderRadius="lg"
-      _dark={{
-        // backgroundColor: iDarkColor.primary,
-        padding: '12px',
-      }}
-      _light={{
-        // backgroundColor: iDarkColor.primary,
-        padding: '12px',
-      }}
+      padding={SPACER.l}
       _text={{
         color: 'lightText',
       }}

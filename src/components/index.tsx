@@ -5,5 +5,6 @@ export * from './Input';
 export * from './Link';
 export * from './Logo';
 
-export * from './button/ToggleButton';
+// export * from './button/ToggleButton';
 export * from './button';
+export * from './button/ToggleTheme';

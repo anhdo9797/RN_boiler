@@ -13,14 +13,14 @@ const NativeBaseWrapper = () => {
 
 const App = () => {
   return (
-    <AppProvider>
-      <NativeBaseProvider
-        config={themConfig}
-        colorModeManager={colorModeManager}
-        theme={getTheme()}>
+    <NativeBaseProvider
+      config={themConfig}
+      // colorModeManager={colorModeManager}
+      theme={getTheme()}>
+      <AppProvider>
         <NativeBaseWrapper />
-      </NativeBaseProvider>
-    </AppProvider>
+      </AppProvider>
+    </NativeBaseProvider>
   );
 };
 export default App;

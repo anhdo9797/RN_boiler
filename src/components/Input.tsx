@@ -1,4 +1,4 @@
-import {iDarkColor} from '@share/layout';
+import {iDarkColor, SPACER} from '@share/layout';
 import {FormControl, Icon, Input, Pressable} from 'native-base';
 import {IInputProps} from 'native-base/lib/typescript/components/primitives/Input/types';
 import React, {FC} from 'react';
@@ -58,7 +58,7 @@ export const IInput: FC<IInputProps & Props> = ({
         render={({field: {onChange, onBlur, value}}) => (
           <Input
             variant="filled"
-            padding="12px"
+            padding={SPACER.l}
             type={placeholder}
             onBlur={onBlur}
             onChangeText={onChange}

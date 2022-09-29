@@ -35,5 +35,4 @@ export const getTheme = (themeMode?: string) =>
       body: 'SourceSansPro-Regular',
       mono: 'SourceSansPro-Regular',
     },
-    initialColorMode: themeMode ?? 'light',
   });

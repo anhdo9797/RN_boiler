@@ -1,9 +1,7 @@
 import {THEME_MODE, TOKEN} from '@configs';
 import {useToggle} from '@hooks';
 import {User} from '@models';
-import AsyncStorage, {
-  useAsyncStorage,
-} from '@react-native-async-storage/async-storage';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useColorMode} from 'native-base';
 import React, {createContext, useContext, useEffect, useState} from 'react';
 import SplashScreen from 'react-native-splash-screen';
@@ -30,14 +28,20 @@ export const AppProvider = (props: any) => {
   const {colorMode, toggleColorMode} = useColorMode();
 
   const appInit = async () => {
-    const [theme, token] = await AsyncStorage.multiGet([THEME_MODE, TOKEN]);
+    const [theme, token] = await Promise.all([
+      AsyncStorage.getItem(THEME_MODE),
+      AsyncStorage.getItem(TOKEN),
+    ]);
+
+    if (theme !== colorMode) {
+      toggleColorMode();
+    }
 
     if (!!token) {
       await getMe();
     }
-
+    setThemMode(prev => (theme === 'dark' ? 'dark' : 'light'));
     SplashScreen.hide();
-    console.log('AppProvider', theme, token);
   };
 
   const getMe = async () => {};
@@ -48,7 +52,9 @@ export const AppProvider = (props: any) => {
     console.log('TOGGLE THEME');
 
     try {
-      let value = colorMode === 'dark' ? 'light' : 'dark';
+      let value = themeMode === 'dark' ? 'light' : 'dark';
+      console.log('value', value);
+
       await AsyncStorage.setItem(THEME_MODE, value);
     } catch (error) {
       console.log('AppProvider', 'toggle theme error');

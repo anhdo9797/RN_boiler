@@ -7,6 +7,7 @@ import {
   ILink,
   ToggleTheme,
 } from '@components';
+
 import {SelectLanguage} from '@components/Select';
 import {yupResolver} from '@hookform/resolvers/yup';
 import {useToggle} from '@hooks';
@@ -18,23 +19,15 @@ import {
   Divider,
   Heading,
   HStack,
-  IconButton,
   Image,
   Text,
-  useColorMode,
   VStack,
 } from 'native-base';
 import React, {FC, useContext} from 'react';
 import {useForm} from 'react-hook-form';
 import {useTranslation} from 'react-i18next';
-import Entypo from 'react-native-vector-icons/Entypo';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import * as yup from 'yup';
-import {
-  darkLinearColors,
-  iDarkColor,
-  lightLinearColors,
-} from '../../share/layout';
+import {iDarkColor} from '../../share/layout';
 import {LoginContext, LoginProvider} from './login-context';
 
 interface Props {}
