@@ -5,9 +5,11 @@ import {StatusBar} from 'react-native';
 import {AuthStack, navigationRef} from '@navigation';
 import SplashScreen from 'react-native-splash-screen';
 
-export const AppContainer = () => {
+export const AppNavigator = () => {
   useEffect(() => {
-    SplashScreen.hide();
+    setTimeout(() => {
+      SplashScreen.hide();
+    }, 200);
   }, []);
 
   return (

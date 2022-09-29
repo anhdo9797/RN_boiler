@@ -1,6 +1,7 @@
-import type {ColorMode, StorageManager} from 'native-base';
+import {ColorMode, extendTheme, StorageManager} from 'native-base';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {THEME_MODE} from '../constance';
+import {baseColors} from './colors';
 
 export const colorModeManager: StorageManager = {
   get: async () => {
@@ -9,7 +10,6 @@ export const colorModeManager: StorageManager = {
       return val === 'dark' ? 'dark' : 'light';
     } catch (e) {
       console.log(e);
-      return 'light';
     }
   },
   set: async (value: ColorMode) => {
@@ -26,3 +26,14 @@ export const themConfig = {
     'linear-gradient': require('react-native-linear-gradient').default,
   },
 };
+
+export const getTheme = (themeMode?: string) =>
+  extendTheme({
+    colors: baseColors,
+    fonts: {
+      heading: 'SourceSansPro-Regular',
+      body: 'SourceSansPro-Regular',
+      mono: 'SourceSansPro-Regular',
+    },
+    initialColorMode: themeMode ?? 'light',
+  });
