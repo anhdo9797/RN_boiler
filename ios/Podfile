@@ -3,7 +3,7 @@ require_relative '../node_modules/@react-native-community/cli-platform-ios/nativ
 
 platform :ios, '10.0'
 
-target 'RN_boiler' do
+abstract_target 'RN_boilerCommonPods' do
   config = use_native_modules!
 
   use_react_native!(
@@ -11,6 +11,12 @@ target 'RN_boiler' do
     # to enable hermes on iOS, change `false` to `true` and then install pods
     :hermes_enabled => false
   )
+
+  target 'RN_boiler' do
+  end
+
+  target 'RN_boiler_dev' do
+  end
 
   target 'RN_boilerTests' do
     inherit! :complete
