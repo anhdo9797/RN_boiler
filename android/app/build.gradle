@@ -159,7 +159,8 @@ android {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
-        versionName "1.0"
+        versionName project.env.get("APP_VERSION")
+        setProperty("archivesBaseName", project.env.get("APP_NAME"))
     }
     splits {
         abi {
@@ -176,6 +177,13 @@ android {
             keyAlias 'androiddebugkey'
             keyPassword 'android'
         }
+
+        release {
+            storeFile file(project.env.get("MYAPP_RELEASE_STORE_FILE"))
+            storePassword project.env.get("MYAPP_RELEASE_STORE_PASSWORD")
+            keyAlias project.env.get("MYAPP_RELEASE_KEY_ALIAS")
+            keyPassword project.env.get("MYAPP_RELEASE_KEY_PASSWORD")
+        }
     }
     buildTypes {
         debug {
@@ -185,7 +193,7 @@ android {
         release {
             // Caution! In production, you need to generate your own keystore file.
             // see https://reactnative.dev/docs/signed-apk-android.
-            signingConfig signingConfigs.debug
+            signingConfig signingConfigs.release
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         }
@@ -238,7 +246,7 @@ dependencies {
 }
 
 project.ext.vectoricons = [
-    iconFontNames: [ 'MaterialIcons.ttf', 'EvilIcons.ttf', "Ionicons.ttf", "Entypo.ttf" ,"Feather.ttf", "MaterialCommunityIcons.ttf" , "AntDesign.ttf"]  
+    iconFontNames: [ 'MaterialIcons.ttf', 'EvilIcons.ttf', "Ionicons.ttf", "Entypo.ttf" ,"Feather.ttf", "MaterialCommunityIcons.ttf" , "AntDesign.ttf"]
 ]
 
 apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"

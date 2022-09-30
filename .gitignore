@@ -64,3 +64,8 @@ src*.png
 node_*.json
 src_*.json
 android/app/src/main/res/raw/app.json
+*.hprof
+
+.env*
+*.keystore
+*.kjs

@@ -15,7 +15,8 @@
     "android:dev": "react-native run-android --variant=developmentdebug",
     "android:dev-release": "react-native run-android --variant=developmentrelease",
     "android:prod": "react-native run-android --variant=productiondebug",
-    "android:prod-release": "react-native run-android --variant=productionrelease"
+    "android:prod-release": "react-native run-android --variant=productionrelease",
+    "android:build-product": "cd android && ./gradlew assembleproductionrelease && cd .."
   },
   "dependencies": {
     "@hookform/resolvers": "^2.9.8",
