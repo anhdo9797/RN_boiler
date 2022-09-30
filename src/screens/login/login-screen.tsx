@@ -26,6 +26,7 @@ import {
 import React, {FC, useContext} from 'react';
 import {useForm} from 'react-hook-form';
 import {useTranslation} from 'react-i18next';
+import Config from 'react-native-config';
 import * as yup from 'yup';
 import {iDarkColor} from '../../share/layout';
 import {LoginContext, LoginProvider} from './login-context';
@@ -140,7 +141,7 @@ const Login: FC<Props> = () => {
         <Text italic fontSize="xs">
           Version:{' '}
           <Text bold color={iDarkColor.primary}>
-            1.0.0
+            {Config.APP_VERSION}
           </Text>
         </Text>
       </VStack>
