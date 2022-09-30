@@ -78,14 +78,14 @@ import com.android.build.OutputFile
  */
 
 project.ext.react = [
-    enableHermes: false,  // clean and rebuild if changing
+    enableHermes: true,  // clean and rebuild if changing
 ]
 
 project.ext.envConfigFiles = [
    productiondebug: ".env.production",
    productionrelease: ".env.production",
-   developmentrelease: ".env.development",
-   developmentdebug: ".env.development"
+   developmentrelease: ".env",
+   developmentdebug: ".env"
 ]
 apply from: project(':react-native-config').projectDir.getPath() + "/dotenv.gradle"
 apply from: "../../node_modules/react-native/react.gradle"
@@ -143,7 +143,7 @@ android {
 
         development {
             minSdkVersion rootProject.ext.minSdkVersion
-            applicationId "com.rn_boiler.development"
+            applicationId "com.rn_boiler.dev"
             targetSdkVersion rootProject.ext.targetSdkVersion
             resValue "string", "build_config_package", "com.rn_boiler"
         }
@@ -160,7 +160,7 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName project.env.get("APP_VERSION")
-        setProperty("archivesBaseName", project.env.get("APP_NAME"))
+        setProperty("archivesBaseName", project.env.get("APP_NAME_OUTPUT"))
     }
     splits {
         abi {
