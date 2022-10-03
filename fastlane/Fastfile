@@ -1,0 +1,59 @@
+before_all do |lane , options|
+    # env is prod or dev
+    puts "Run all lane with type #{options[:env]}"
+   
+end
+
+platform :android do        
+    desc 'Build the Android application.'
+    lane :build do | options |
+        gradle(
+            task: "clean", 
+            project_dir: 'android/',
+            properties: {
+                "defaultEnvFile" => ENV["ENVFILE"]
+            }
+        )
+        versionCode = increment_version_code(
+            gradle_file_path: "android/app/build.gradle",
+        )
+       
+        gradle(
+            task: "assemble",
+            build_type: "Release",
+            flavor: ENV["FLAVOR"],
+            print_command: true,
+            project_dir: 'android/',
+            properties: {
+                "defaultEnvFile" => ENV["ENVFILE"]
+            }
+        )
+           
+    end
+
+    desc 'Build and upload to App Center.'
+    lane :build_release do | options |
+        versionCode = build()
+        push(versionCode: versionCode)
+        # appcenter_upload(
+        #     api_token: ENV["TEST_APPCENTER_API_TOKEN"],
+        #     owner_name: ENV["TEST_APPCENTER_OWNER_NAME"],
+        #     app_name: ENV["APPCENTER_APP_NAME"],
+        #     apk: ENV["APPCENTER_DISTRIBUTE_APK"]
+        # )
+    end
+
+    desc 'Push new versions'
+    lane :push do | options |
+        git_commit(path: "*", message: "Version Bump #{options[:versionCode]}")
+        push_to_git_remote
+    end
+end
+
+after_all do |lane, options|
+   
+
+    puts "BUILD_VERSION: #{ENV["ANDROID_BUILD_VERSION"]}"
+
+end
+  
