@@ -18,7 +18,7 @@
     "android:prod-release": "react-native run-android --variant=productionrelease",
     "android:build-prod": "cd android ./gradlew bundleProductionRelease",
     "android:build-dev": "cd android ./gradlew bundleDevelopmentRelease",
-    "build:android:staging": "cd android && fastlane android staging_build --env dev"
+    "build:android:dev": "fastlane android build --env dev"
   },
   "dependencies": {
     "@hookform/resolvers": "^2.9.8",
