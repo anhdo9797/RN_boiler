@@ -82,8 +82,8 @@ project.ext.react = [
 ]
 
 project.ext.envConfigFiles = [
-   productiondebug: ".env.production",
-   productionrelease: ".env.production",
+   productiondebug: ".env.prod",
+   productionrelease: ".env.prod",
    developmentrelease: ".env",
    developmentdebug: ".env"
 ]

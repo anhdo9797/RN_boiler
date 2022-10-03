@@ -67,6 +67,6 @@ src_*.json
 android/app/src/main/res/raw/app.json
 *.hprof
 
-.env*
+# .env*
 *.keystore
 *.kjs
