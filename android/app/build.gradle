@@ -158,7 +158,7 @@ android {
         applicationId "com.rn_boiler"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 12
+        versionCode 13
         versionName project.env.get("APP_VERSION")
         setProperty("archivesBaseName", project.env.get("APP_NAME_OUTPUT"))
     }
