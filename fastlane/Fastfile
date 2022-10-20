@@ -1,7 +1,8 @@
 before_all do |lane , options|
-    # env is prod or dev
+    ensure_git_branch
+    ensure_git_status_clean
+    git_pull
     puts "Run all lane with type #{options[:env]}"
-   
 end
 
 platform :android do        
@@ -33,8 +34,8 @@ platform :android do
 
     desc 'Build and upload to App Center.'
     lane :build_release do | options |
-        versionCode = build()
-        push(versionCode: versionCode)
+        build()
+       
         # appcenter_upload(
         #     api_token: ENV["TEST_APPCENTER_API_TOKEN"],
         #     owner_name: ENV["TEST_APPCENTER_OWNER_NAME"],
@@ -43,17 +44,29 @@ platform :android do
         # )
     end
 
-    desc 'Push new versions'
-    lane :push do | options |
-        git_commit(path: "*", message: "Version Bump #{options[:versionCode]}")
-        push_to_git_remote
+     
+end
+
+platform :ios do
+    desc 'Deploy ios'
+    lane :deploy do | options |
+        increment_build_number(xcodeproj: './ios/RN.xcodeproj')
+        gym(scheme: ENV["FLAVOR"], project: './ios/name.xcodeproj')
+        build_app(
+            scheme: ENV["FLAVOR"],
+            export_method: "app-store",
+            export_options: {
+                provisioningProfiles: { 
+                "com.example.bundleid" => "Provisioning Profile Name",
+                }
+            }
+        )
     end
 end
 
-after_all do |lane, options|
-   
-
-    puts "BUILD_VERSION: #{ENV["ANDROID_BUILD_VERSION"]}"
-
+ 
+after_all
+    puts "Build success"
+    git_commit(path: "*", message: "Fastlane commit to build")
+    push_to_git_remote
 end
-  

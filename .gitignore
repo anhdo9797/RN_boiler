@@ -70,3 +70,4 @@ android/app/src/main/res/raw/app.json
 # .env*
 *.keystore
 *.kjs
+.env*
